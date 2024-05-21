@@ -1,9 +1,7 @@
 // 引入three.js
-import * as THREE from 'three';
+import * as THREE from "three";
 // 引入轨道控制器扩展库OrbitControls.js
-import {
-    OrbitControls
-} from 'three/addons/controls/OrbitControls.js';
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 /**
  * 创建3D场景对象Scene
  */
@@ -16,7 +14,7 @@ const scene = new THREE.Scene();
 const geometry = new THREE.BoxGeometry(100, 100, 100);
 // 漫反射网格材质；MeshLambertMaterial
 const material = new THREE.MeshLambertMaterial({
-    color: 0x00ffff, //设置材质颜色
+	color: 0x00ffff, //设置材质颜色
 });
 const mesh = new THREE.Mesh(geometry, material); //网格模型对象Mesh
 scene.add(mesh); //网格模型添加到场景中
@@ -29,12 +27,12 @@ scene.add(axesHelper);
  * 光源设置
  */
 //点光源
-const pointLight = new THREE.PointLight(0xffffff, 1.0);
+const pointLight = new THREE.SpotLight(0xffffff, 1.0);
+pointLight.decay = 0;
 //点光源位置
-// pointLight.position.set(400, 0, 0);//点光源放在x轴上
-pointLight.position.set(400, 200, 300);//偏移光源位置，观察渲染效果变化
+// pointLight.position.set(400, 0, 0); //点光源放在x轴上
+pointLight.position.set(400, 200, 300); //偏移光源位置，观察渲染效果变化
 scene.add(pointLight); //点光源添加到场景中
-
 
 // width和height用来设置Three.js输出的Canvas画布尺寸(像素px)
 const width = 800; //宽度
@@ -59,10 +57,8 @@ document.body.appendChild(renderer.domElement);
 // 设置相机控件轨道控制器OrbitControls
 const controls = new OrbitControls(camera, renderer.domElement);
 // 如果OrbitControls改变了相机参数，重新调用渲染器渲染三维场景
-controls.addEventListener('change', function () {
-    renderer.render(scene, camera); //执行渲染操作
-    // 浏览器控制台查看相机位置变化
-    console.log('camera.position',camera.position);
-});//监听鼠标、键盘事件
-
-
+controls.addEventListener("change", function () {
+	renderer.render(scene, camera); //执行渲染操作
+	// 浏览器控制台查看相机位置变化
+	console.log("camera.position", camera.position);
+}); //监听鼠标、键盘事件
